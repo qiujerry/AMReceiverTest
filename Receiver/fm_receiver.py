@@ -86,9 +86,9 @@ class fm_receiver(gr.top_block, Qt.QWidget):
         # Blocks
         ##################################################
         # Create the options list
-        self._tuner_options = [89700000.0, 90500000.0, 92300000.0, 97900000.0, 106500000.0, 107900000.0]
+        self._tuner_options = [89700000.0, 90500000.0, 92300000.0, 94700000.0, 97900000.0, 106500000.0, 107900000.0]
         # Create the labels list
-        self._tuner_labels = ['89.7M', '90.5M', '92.3M', '97.9M', '106.5M', '107.9M']
+        self._tuner_labels = ['89.7M', '90.5M', '92.3M', '94.7M', '97.9M', '106.5M', '107.9M']
         # Create the combo box
         self._tuner_tool_bar = Qt.QToolBar(self)
         self._tuner_tool_bar.addWidget(Qt.QLabel('Station Select' + ": "))
@@ -209,7 +209,7 @@ class fm_receiver(gr.top_block, Qt.QWidget):
             firdes.low_pass(
                 2,
                 samp_rate,
-                100e3,
+                150e3,
                 10e3,
                 firdes.WIN_KAISER,
                 6.76))
@@ -253,7 +253,7 @@ class fm_receiver(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.low_pass_filter_0.set_taps(firdes.low_pass(2, self.samp_rate, 100e3, 10e3, firdes.WIN_KAISER, 6.76))
+        self.low_pass_filter_0.set_taps(firdes.low_pass(2, self.samp_rate, 150e3, 10e3, firdes.WIN_KAISER, 6.76))
         self.rtlsdr_source_0.set_sample_rate(self.samp_rate)
 
     def get_rx_gain(self):
