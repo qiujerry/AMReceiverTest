@@ -32,28 +32,44 @@ def main():
 
     def tune_click():
         print(fm_station.get())
-        s.sendto(fm_station.get().encode('utf-8'), server)
+        s.sendto(str("Tune " + fm_station.get()).encode('utf-8'), server)
         data, addr = s.recvfrom(1024)
         data = data.decode('utf-8')
         print("Received from server: " + data)
         return
 
     def pause_click():
+        s.sendto(str("Pause").encode('utf-8'), server)
+        data, addr = s.recvfrom(1024)
+        data = data.decode('utf-8')
+        print("Received from server: " + data)
         print("pause")
         return
 
     def play_click():
+        s.sendto(str("Play").encode('utf-8'), server)
+        data, addr = s.recvfrom(1024)
+        data = data.decode('utf-8')
+        print("Received from server: " + data)
         print("play")
         return
     
     def gain_click():
+        print(rx_gain.get())
+        s.sendto(str("Gain " + rx_gain.get()).encode('utf-8'), server)
+        data, addr = s.recvfrom(1024)
+        data = data.decode('utf-8')
         print("gain")
         return
 
     def sd_click():
         print("shut down")
+        s.sendto(str("Shutdown").encode('utf-8'), server)
+        data, addr = s.recvfrom(1024)
+        data = data.decode('utf-8')
         s.close()
         window.destroy()
+        quit()
         return
 
     tune = tk.Button(

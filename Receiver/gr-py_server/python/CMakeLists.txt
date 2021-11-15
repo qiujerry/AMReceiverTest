@@ -32,7 +32,7 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    DESTINATION ${GR_PYTHON_DIR}/py_server
+    gr_server.py DESTINATION ${GR_PYTHON_DIR}/py_server
 )
 
 ########################################################################
