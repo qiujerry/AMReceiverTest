@@ -209,11 +209,11 @@ class fm_receiver(gr.top_block, Qt.QWidget):
             firdes.low_pass(
                 2,
                 samp_rate,
-                150e3,
+                100e3,
                 10e3,
                 firdes.WIN_KAISER,
                 6.76))
-        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(20)
+        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(5)
         self.audio_sink_0 = audio.sink(24000, '', True)
         self.analog_wfm_rcv_0 = analog.wfm_rcv(
         	quad_rate=250e3,
@@ -253,7 +253,7 @@ class fm_receiver(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.low_pass_filter_0.set_taps(firdes.low_pass(2, self.samp_rate, 150e3, 10e3, firdes.WIN_KAISER, 6.76))
+        self.low_pass_filter_0.set_taps(firdes.low_pass(2, self.samp_rate, 100e3, 10e3, firdes.WIN_KAISER, 6.76))
         self.rtlsdr_source_0.set_sample_rate(self.samp_rate)
 
     def get_rx_gain(self):
