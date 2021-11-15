@@ -1,9 +1,21 @@
 import tkinter as tk
-
-
+import socket
+import configparser
 
 
 def main():
+    
+    config = configparser.ConfigParser()
+    config.read('client.cfg')
+
+    host=config['DEFAULT']['host'] #client ip
+    port = int(config['DEFAULT']['port'])
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.bind((host,port))
+
+    server = (config['DEFAULT']['server'], int(config['DEFAULT']['server_port']))
+
     window = tk.Tk()
 
     window.rowconfigure(0, minsize=50)
@@ -20,6 +32,10 @@ def main():
 
     def tune_click():
         print(fm_station.get())
+        s.sendto(fm_station.get().encode('utf-8'), server)
+        data, addr = s.recvfrom(1024)
+        data = data.decode('utf-8')
+        print("Received from server: " + data)
         return
 
     def pause_click():
@@ -36,6 +52,7 @@ def main():
 
     def sd_click():
         print("shut down")
+        s.close()
         window.destroy()
         return
 
@@ -107,6 +124,6 @@ def main():
 
     window.mainloop()
 
-
+    s.close()
 
 if __name__ == "__main__": main()
