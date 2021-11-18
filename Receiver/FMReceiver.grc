@@ -32,6 +32,18 @@ options:
     state: enabled
 
 blocks:
+- name: cent_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: 89.7e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [536, 48.0]
+    rotation: 0
+    state: true
 - name: down_rate
   id: variable
   parameters:
@@ -107,6 +119,18 @@ blocks:
     coordinate: [34, 144]
     rotation: 0
     state: true
+- name: volume
+  id: variable
+  parameters:
+    comment: ''
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [824, 48.0]
+    rotation: 0
+    state: true
 - name: analog_wfm_rcv_0
   id: analog_wfm_rcv
   parameters:
@@ -147,7 +171,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    const: '5'
+    const: volume
     maxoutbuf: '0'
     minoutbuf: '0'
     type: float
@@ -214,7 +238,7 @@ blocks:
     color9: '"dark green"'
     comment: ''
     ctrlpanel: 'True'
-    fc: tuner
+    fc: cent_freq
     fftsize: '1024'
     freqhalf: 'True'
     grid: 'True'
@@ -294,7 +318,7 @@ blocks:
     color9: '"dark green"'
     comment: ''
     ctrlpanel: 'False'
-    fc: tuner
+    fc: cent_freq
     fftsize: '1024'
     freqhalf: 'True'
     grid: 'True'
@@ -538,7 +562,7 @@ blocks:
     dc_offset_mode7: '0'
     dc_offset_mode8: '0'
     dc_offset_mode9: '0'
-    freq0: tuner
+    freq0: cent_freq
     freq1: 100e6
     freq10: 100e6
     freq11: 100e6
@@ -718,6 +742,20 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [112, 292.0]
+    rotation: 0
+    state: true
+- name: xmlrpc_server_0
+  id: xmlrpc_server
+  parameters:
+    addr: localhost
+    alias: ''
+    comment: ''
+    port: '8080'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [792, 312.0]
     rotation: 0
     state: true
 

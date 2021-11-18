@@ -38,6 +38,11 @@ from gnuradio import eng_notation
 from gnuradio.qtgui import Range, RangeWidget
 import osmosdr
 import time
+try:
+    from xmlrpc.server import SimpleXMLRPCServer
+except ImportError:
+    from SimpleXMLRPCServer import SimpleXMLRPCServer
+import threading
 
 from gnuradio import qtgui
 
@@ -77,14 +82,24 @@ class fm_receiver(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
+        self.volume = volume = 1
         self.tuner = tuner = 89.7e6
         self.samp_rate = samp_rate = 2e6
         self.rx_gain = rx_gain = 10
         self.down_rate = down_rate = 250e3
+        self.cent_freq = cent_freq = 89.7e6
 
         ##################################################
         # Blocks
         ##################################################
+        self._rx_gain_range = Range(0, 60, 1, 10, 200)
+        self._rx_gain_win = RangeWidget(self._rx_gain_range, self.set_rx_gain, 'RX Gain', "counter_slider", int)
+        self.top_layout.addWidget(self._rx_gain_win)
+        self.xmlrpc_server_0 = SimpleXMLRPCServer(('localhost', 8080), allow_none=True)
+        self.xmlrpc_server_0.register_instance(self)
+        self.xmlrpc_server_0_thread = threading.Thread(target=self.xmlrpc_server_0.serve_forever)
+        self.xmlrpc_server_0_thread.daemon = True
+        self.xmlrpc_server_0_thread.start()
         # Create the options list
         self._tuner_options = [89700000.0, 90500000.0, 92300000.0, 94700000.0, 97900000.0, 106500000.0, 107900000.0]
         # Create the labels list
@@ -101,14 +116,11 @@ class fm_receiver(gr.top_block, Qt.QWidget):
             lambda i: self.set_tuner(self._tuner_options[i]))
         # Create the radio buttons
         self.top_layout.addWidget(self._tuner_tool_bar)
-        self._rx_gain_range = Range(0, 60, 1, 10, 200)
-        self._rx_gain_win = RangeWidget(self._rx_gain_range, self.set_rx_gain, 'RX Gain', "counter_slider", int)
-        self.top_layout.addWidget(self._rx_gain_win)
         self.rtlsdr_source_0 = osmosdr.source(
             args="numchan=" + str(1) + " " + ""
         )
         self.rtlsdr_source_0.set_sample_rate(samp_rate)
-        self.rtlsdr_source_0.set_center_freq(tuner, 0)
+        self.rtlsdr_source_0.set_center_freq(cent_freq, 0)
         self.rtlsdr_source_0.set_freq_corr(0, 0)
         self.rtlsdr_source_0.set_dc_offset_mode(2, 0)
         self.rtlsdr_source_0.set_iq_balance_mode(2, 0)
@@ -126,7 +138,7 @@ class fm_receiver(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_1 = qtgui.freq_sink_f(
             1024, #size
             firdes.WIN_BLACKMAN_hARRIS, #wintype
-            tuner, #fc
+            cent_freq, #fc
             100e3, #bw
             "Demod Out", #name
             1
@@ -167,7 +179,7 @@ class fm_receiver(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
             1024, #size
             firdes.WIN_BLACKMAN_hARRIS, #wintype
-            tuner, #fc
+            cent_freq, #fc
             100e3, #bw
             "Sampling Bandpass", #name
             1
@@ -209,11 +221,11 @@ class fm_receiver(gr.top_block, Qt.QWidget):
             firdes.low_pass(
                 2,
                 samp_rate,
-                150e3,
+                100e3,
                 10e3,
                 firdes.WIN_KAISER,
                 6.76))
-        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(20)
+        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(volume)
         self.audio_sink_0 = audio.sink(24000, '', True)
         self.analog_wfm_rcv_0 = analog.wfm_rcv(
         	quad_rate=250e3,
@@ -238,22 +250,26 @@ class fm_receiver(gr.top_block, Qt.QWidget):
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
+    def get_volume(self):
+        return self.volume
+
+    def set_volume(self, volume):
+        self.volume = volume
+        self.blocks_multiply_const_vxx_0.set_k(self.volume)
+
     def get_tuner(self):
         return self.tuner
 
     def set_tuner(self, tuner):
         self.tuner = tuner
         self._tuner_callback(self.tuner)
-        self.qtgui_freq_sink_x_0.set_frequency_range(self.tuner, 100e3)
-        self.qtgui_freq_sink_x_1.set_frequency_range(self.tuner, 100e3)
-        self.rtlsdr_source_0.set_center_freq(self.tuner, 0)
 
     def get_samp_rate(self):
         return self.samp_rate
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.low_pass_filter_0.set_taps(firdes.low_pass(2, self.samp_rate, 150e3, 10e3, firdes.WIN_KAISER, 6.76))
+        self.low_pass_filter_0.set_taps(firdes.low_pass(2, self.samp_rate, 100e3, 10e3, firdes.WIN_KAISER, 6.76))
         self.rtlsdr_source_0.set_sample_rate(self.samp_rate)
 
     def get_rx_gain(self):
@@ -268,6 +284,15 @@ class fm_receiver(gr.top_block, Qt.QWidget):
 
     def set_down_rate(self, down_rate):
         self.down_rate = down_rate
+
+    def get_cent_freq(self):
+        return self.cent_freq
+
+    def set_cent_freq(self, cent_freq):
+        self.cent_freq = cent_freq
+        self.qtgui_freq_sink_x_0.set_frequency_range(self.cent_freq, 100e3)
+        self.qtgui_freq_sink_x_1.set_frequency_range(self.cent_freq, 100e3)
+        self.rtlsdr_source_0.set_center_freq(self.cent_freq, 0)
 
 
 
