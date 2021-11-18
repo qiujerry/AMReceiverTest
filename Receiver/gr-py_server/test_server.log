@@ -5,4 +5,125 @@ Message from: ('127.0.0.1', 4005)From connected user: Tune 94.7Sending: TUNE 94.
 Message from: ('127.0.0.1', 4005)From connected user: Tune 107.4Mon Nov 15 00:45:58 2021 fm_server starting on port 4000
 Message from: ('127.0.0.1', 4005)From connected user: Tune 107.4Sending: TUNE 107.4Message from: ('127.0.0.1', 4005)From connected user: ShutdownSending: SHUTDOWNMon Nov 15 00:47:07 2021 fm_server starting on port 4000
 Message from: ('127.0.0.1', 4005)From connected user: Tune 107.4Mon Nov 15 00:49:05 2021 fm_server starting on port 4000
-Message from: ('127.0.0.1', 4005)From connected user: PauseSending: PAUSEMessage from: ('127.0.0.1', 4005)From connected user: PlaySending: PLAYMessage from: ('127.0.0.1', 4005)From connected user: Tune 107.4Sending: TUNE 107.4Message from: ('127.0.0.1', 4005)From connected user: Tune 89.7Sending: TUNE 89.7Message from: ('127.0.0.1', 4005)From connected user: ShutdownSending: SHUTDOWN
+Message from: ('127.0.0.1', 4005)From connected user: PauseSending: PAUSEMessage from: ('127.0.0.1', 4005)From connected user: PlaySending: PLAYMessage from: ('127.0.0.1', 4005)From connected user: Tune 107.4Sending: TUNE 107.4Message from: ('127.0.0.1', 4005)From connected user: Tune 89.7Sending: TUNE 89.7Message from: ('127.0.0.1', 4005)From connected user: ShutdownSending: SHUTDOWNMon Nov 15 17:21:21 2021 fm_server starting on port 4000
+Mon Nov 15 17:21:47 2021 fm_server starting on port 4000
+Message from: ('127.0.0.1', 4005)
+From connected user: Tune 94.7
+Sending: TUNE 94.7
+Message from: ('127.0.0.1', 4005)
+From connected user: Tune 107.9
+Sending: TUNE 107.9
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 25
+Sending: GAIN 25
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 20
+Sending: GAIN 20
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 30
+Sending: GAIN 30
+Message from: ('127.0.0.1', 4005)
+From connected user: Tune 92.3
+Sending: TUNE 92.3
+Message from: ('127.0.0.1', 4005)
+From connected user: Pause
+Sending: PAUSE
+Message from: ('127.0.0.1', 4005)
+From connected user: Play
+Sending: PLAY
+Message from: ('127.0.0.1', 4005)
+From connected user: Tune 94.7
+Sending: TUNE 94.7
+Message from: ('127.0.0.1', 4005)
+From connected user: Shutdown
+Sending: SHUTDOWN
+Mon Nov 15 17:27:05 2021 fm_server starting on port 4000
+Message from: ('127.0.0.1', 4005)
+From connected user: Tune 94.7
+Sending: TUNE 94.7
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 15
+Sending: GAIN 15
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 9
+Sending: GAIN 9
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 20
+Sending: GAIN 20
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 10
+Sending: GAIN 10
+Message from: ('127.0.0.1', 4005)
+From connected user: Tune 107.9
+Sending: TUNE 107.9
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 25
+Sending: GAIN 25
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 30
+Sending: GAIN 30
+Message from: ('127.0.0.1', 4005)
+From connected user: Tune 94.7
+Sending: TUNE 94.7
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 20
+Sending: GAIN 20
+Message from: ('127.0.0.1', 4005)
+From connected user: Shutdown
+Sending: SHUTDOWN
+Thu Nov 18 17:23:42 2021 fm_server starting on port 4000
+Message from: ('127.0.0.1', 4005)
+From connected user: Tune 94.7
+Thu Nov 18 17:26:40 2021 fm_server starting on port 4000
+Message from: ('127.0.0.1', 4005)
+From connected user: Pause
+Sending: PAUSE
+Message from: ('127.0.0.1', 4005)
+From connected user: Play
+Sending: PLAY
+Message from: ('127.0.0.1', 4005)
+From connected user: Tune 94.7
+Sending: TUNE 94.7
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 15
+Sending: GAIN 15
+Message from: ('127.0.0.1', 4005)
+From connected user: Shutdown
+Sending: SHUTDOWN
+Thu Nov 18 17:31:45 2021 fm_server starting on port 4000
+Message from: ('127.0.0.1', 4005)
+From connected user: Pause
+Sending: PAUSE
+Message from: ('127.0.0.1', 4005)
+From connected user: Play
+Sending: PLAY
+Message from: ('127.0.0.1', 4005)
+From connected user: Pause
+Sending: PAUSE
+Message from: ('127.0.0.1', 4005)
+From connected user: Play
+Sending: PLAY
+Message from: ('127.0.0.1', 4005)
+From connected user: Tune 94.7
+Sending: TUNE 94.7
+Message from: ('127.0.0.1', 4005)
+From connected user: Pause
+Sending: PAUSE
+Message from: ('127.0.0.1', 4005)
+From connected user: Play
+Sending: PLAY
+Message from: ('127.0.0.1', 4005)
+From connected user: Tune 107.9
+Sending: TUNE 107.9
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 24
+Sending: GAIN 24
+Message from: ('127.0.0.1', 4005)
+From connected user: Gain 30
+Sending: GAIN 30
+Message from: ('127.0.0.1', 4005)
+From connected user: Pause
+Sending: PAUSE
+Message from: ('127.0.0.1', 4005)
+From connected user: Shutdown
+Sending: SHUTDOWN
